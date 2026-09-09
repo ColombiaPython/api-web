@@ -1,6 +1,5 @@
 from app.repositories.newsletter import NewsletterRepository
 
-
 class NewsletterService:
     """Service layer for managing newsletter subscriptions."""
 

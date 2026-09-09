@@ -1,6 +1,5 @@
 from app.repositories.sponsors import SponsorsRepository
 
-
 class SponsorsService:
     """Service layer for exposing sponsor data to the API."""
 

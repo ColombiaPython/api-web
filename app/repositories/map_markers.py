@@ -1,6 +1,5 @@
 from app.repositories.base import BaseRepository
 
-
 class MapMarkersRepository(BaseRepository):
     """Repository for retrieving community map marker records from the database."""
 

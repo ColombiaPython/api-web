@@ -1,6 +1,5 @@
 from app.repositories.base import BaseRepository
 
-
 class NewsletterRepository(BaseRepository):
     """Repository for managing newsletter subscription records in the database."""
 

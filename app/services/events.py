@@ -1,6 +1,5 @@
 from app.repositories.events import EventsRepository
 
-
 class EventsService:
     """Service layer for exposing event data to the API."""
 

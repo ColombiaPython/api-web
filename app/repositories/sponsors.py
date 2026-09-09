@@ -1,6 +1,5 @@
 from app.repositories.base import BaseRepository
 
-
 class SponsorsRepository(BaseRepository):
     """Repository for retrieving sponsor records from the database."""
 

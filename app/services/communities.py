@@ -1,6 +1,5 @@
 from app.repositories.communities import CommunitiesRepository
 
-
 class CommunitiesService:
     """Service layer for exposing community data to the API."""
 

@@ -1,6 +1,5 @@
 from app.repositories.base import BaseRepository
 
-
 class EventsRepository(BaseRepository):
     """Repository for retrieving event records from the database."""
 

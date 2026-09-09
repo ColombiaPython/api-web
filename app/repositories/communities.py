@@ -1,6 +1,5 @@
 from app.repositories.base import BaseRepository
 
-
 class CommunitiesRepository(BaseRepository):
     """Repository for retrieving community records from the database."""
 

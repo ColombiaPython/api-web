@@ -1,6 +1,5 @@
 from app.repositories.map_markers import MapMarkersRepository
 
-
 class MapMarkersService:
     """Service layer for exposing community map marker data to the API."""
 

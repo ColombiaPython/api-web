@@ -1,0 +1,12 @@
+[project]
+name = "pythoncolombiaapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]>=0.141.1",
+    "psycopg[binary,pool]>=3.3.5",
+    "pyclean>=3.7.0",
+    "python-dotenv>=1.2.3",
+]

@@ -21,5 +21,5 @@ CORS_ORIGINS: list[str] = [
 CORS_ORIGIN_REGEX = (
     r"(?i)^https?://(?:localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$"
     r"|^https://(?:[a-z0-9-]+\.)+github\.io$"
-    r"|^https://www\.python\.org\.co$"
+    r"|^https://(?:www\.)?python\.org\.co$"
 )

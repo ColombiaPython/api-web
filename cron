@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+"""
+Command line entry point for the Python Colombia scheduled tasks.
+
+Usage
+-----
+    ./cron sync-meetup
+"""
+
+import asyncio
+import argparse
+from collections.abc import Awaitable, Callable
+from app.services.sync_meetup import SyncMeetupService
+
+async def syncMeetup() -> None:
+    """
+    Synchronize upcoming Meetup events for every active community.
+
+    Returns
+    -------
+    None
+        The synchronization is delegated to :class:`SyncMeetupService`.
+    """
+    await SyncMeetupService().handle()
+
+COMMANDS: dict[str, Callable[[], Awaitable[None]]] = {
+    "sync-meetup": syncMeetup,
+}
+
+def createParser() -> argparse.ArgumentParser:
+    """
+    Build the argument parser exposing every available cron command.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser with one subcommand registered per supported task.
+    """
+    parser = argparse.ArgumentParser(
+        prog="cron",
+        description="Scheduled tasks for the Python Colombia API.",
+    )
+    subparsers = parser.add_subparsers(dest="command", required=True, metavar="command")
+    subparsers.add_parser(
+        "sync-meetup",
+        help="Synchronize upcoming Meetup events for every active community.",
+    )
+    return parser
+
+def main(argv: list[str] | None = None) -> int:
+    """
+    Parse the command line arguments and run the requested command.
+
+    Parameters
+    ----------
+    argv : list[str] or None, optional
+        Arguments to parse. When omitted, ``sys.argv`` is used.
+
+    Returns
+    -------
+    int
+        Process exit code: ``0`` on success, ``1`` when the command fails.
+    """
+    args = createParser().parse_args(argv)
+
+    try:
+        asyncio.run(COMMANDS[args.command]())
+    except Exception as e:
+        print(f"[cron] {args.command} failed: {e}")
+        return 1
+
+    print(f"[cron] {args.command} completed successfully.")
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())

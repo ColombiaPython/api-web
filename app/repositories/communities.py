@@ -32,3 +32,29 @@ class CommunitiesRepository(BaseRepository):
         """
 
         return await self.query(query)
+
+    async def meetupSlugs(self) -> list[dict]:
+        """
+        Retrieve all meetup slugs for the communities.
+
+        Returns
+        -------
+        list[dict]
+            A list of dictionaries containing each community's meetup slug.
+        """
+
+        query: str = """
+            SELECT
+                public.communities_meetup_slugs.community_id AS community_id,
+                public.communities_meetup_slugs.slug AS slug
+            FROM
+                public.communities_meetup_slugs
+            INNER JOIN
+                public.communities ON (
+                    public.communities.id = public.communities_meetup_slugs.community_id
+                )
+            WHERE
+                public.communities.is_active = true
+        """
+
+        return await self.query(query)

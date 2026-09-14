@@ -4,6 +4,7 @@ from app.services.communities import CommunitiesService
 from app.services.events import EventsService
 from app.services.sponsors import SponsorsService
 from app.services.newsletter import NewsletterService
+from app.services.sync_meetup import SyncMeetupService
 
 router = APIRouter(prefix="/api")
 
@@ -12,6 +13,7 @@ communities_service = CommunitiesService()
 events_service = EventsService()
 sponsors_service = SponsorsService()
 newsletter_service = NewsletterService()
+sync_meetup_service = SyncMeetupService()
 
 @router.get("/map-markers", tags=["map-markers"])
 async def getMapMarkers() -> list[dict]:
@@ -111,3 +113,27 @@ async def unsubscribeFromNewsletter(email: str) -> dict:
         A dictionary with the resulting subscription status.
     """
     return await newsletter_service.unsubscribe(email)
+
+@router.get("/sync-meetup", tags=["sync-meetup"])
+async def syncMeetup() -> dict:
+    """
+    Trigger the synchronization of Meetup events.
+
+    Returns
+    -------
+    dict
+        A dictionary with the synchronization result, describing success or the
+        specific failure raised while processing the Meetup data.
+    """
+    try:
+        await sync_meetup_service.handle()
+        return {
+            "success": True,
+            "message": "Meetup synchronization completed successfully.",
+        }
+    except Exception as exc:
+        return {
+            "success": False,
+            "message": "Meetup synchronization failed.",
+            "error": str(exc),
+        }

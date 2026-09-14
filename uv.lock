@@ -553,6 +553,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "httpx" },
     { name = "psycopg", extra = ["binary", "pool"] },
     { name = "pyclean" },
     { name = "python-dotenv" },
@@ -561,6 +562,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.141.1" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "psycopg", extras = ["binary", "pool"], specifier = ">=3.3.5" },
     { name = "pyclean", specifier = ">=3.7.0" },
     { name = "python-dotenv", specifier = ">=1.2.3" },

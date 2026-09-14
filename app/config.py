@@ -18,3 +18,5 @@ CORS_ORIGIN_REGEX = (
     r"|https://(?:www\.)?python\.org\.co"
     r")$"
 )
+
+HASH_MEETUP: str | None = os.getenv("HASH_MEETUP")

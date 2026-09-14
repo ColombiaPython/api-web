@@ -9,4 +9,5 @@ dependencies = [
     "psycopg[binary,pool]>=3.3.5",
     "pyclean>=3.7.0",
     "python-dotenv>=1.2.3",
+    "httpx>=0.28.1",
 ]
